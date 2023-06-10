@@ -9,6 +9,7 @@ public class RockPaperScissors {
         
 		 int userChoice, computerChoice, rock, paper, scissors;
 		 int counter;
+		 boolean playAgain = true;
 	      
 	      //create input object so as to use it's methods for geting use input
 	      Scanner input = new Scanner (System.in);
@@ -20,139 +21,63 @@ public class RockPaperScissors {
 	      rock = 1;
 	      paper = 2;
 	      scissors = 3;
-	      ///int track;
 	     
+	      int userCounter = 0;
+	      int compCounter = 0;
+	      int tieCounter = 0;
 	      //user input
-	      System.out.println("Please enter the round (1=rock, 2=paper, 3= scissors)");
-	      userChoice = input.nextInt();
-	               //if user chooses above 3
-	              while (userChoice > 3) {
-	            System.out.println("this is error, try next round");
-	           userChoice = input.nextInt();
-	          //System.exit(0);
-	        }
-	       //user selections
-	       if (userChoice == rock)
-	       {
-	         System.out.println("User chose ROCK");
-	       }
-	      else
-	      {
-	        if(userChoice== paper)
-	        {
-	          System.out.println("User chose PAPER");
-	        }
-	        else
-	        {
-	        	if(userChoice==scissors)
-	        	{
-	          System.out.println("User chose SCISSORS");
-	        	}
-	        }
-				}
-	      //computer input (random)
-	      computerChoice = rnd.nextInt(3);
-	      
-	      //computer selection
-	      if(computerChoice == rock)
-	      {
-	        System.out.println("Computer chose ROCK");
-	      }
-	      else
-	      {
-	        if(computerChoice == paper)
-	        {
-	          System.out.println("Computer chose PAPER");
-	        }
-	        else
-	        {
-	          System.out.println("Computer chose SCISSORS");
-	        }
+	      System.out.println("Number of round You want to go?");
+	      int numberOfRound = input.nextInt();
+	      if(numberOfRound < 1 && numberOfRound > 10) {
+	    	  System.out.println("wrong number");
 	      }
 	      
-	      //Results section
-	      
-	      //Draw
-	      while (userChoice == computerChoice) {
-	            System.out.println("tie");
-	            
-	            // if user chooses above 3
-	            userChoice = input.nextInt();
-	                          while (userChoice > 3) {
-	                            System.out.println("this is error, please go next");
-	                            userChoice = input.nextInt();
-	                            }
-	            computerChoice = rnd.nextInt(3);
-	                       // DRAW user selections
-	                        if (userChoice == rock)
-	                            {
-	                                System.out.println("User chose ROCK");
-	                            }
-	                        else
-	                        {
-	                            if(userChoice== paper)
-	                            {
-	                                System.out.println("User chose PAPER");
-	                            }
-	                            else
-	                            {
-	                                System.out.println("User chose SCISSORS");
-	                            }
-				}      
-	                       //DRAW computer selection
-	                        if(computerChoice == rock)
-	                            {
-	                                System.out.println("Computer chose ROCK");
-	                            }
-	                        else
-	                            {
-	                                if(computerChoice == paper)
-	                                {
-	                                    System.out.println("Computer chose PAPER");
-	                                }
-	                                else
-	                                {
-	                                if(computerChoice==scissors)
-	                                    System.out.println("Computer chose SCISSORS");
-	                                }
-	                            }
-	                        } //END DRAW
-	      
-	//RESULTS
-	      if (computerChoice==rock)
-	        {
-	            if (userChoice==paper)
-	            {  
-	                System.out.println("User wins!");
-	            }
-	            else 
-	            {
-	                System.out.println("Computer Wins");
-	            }
-	        }
-	      else if (computerChoice==paper)
-	      {
-	        if (userChoice==rock)
-	            {
-	                System.out.println("Computer wins");
-	            }
-	        else
-	            {
-	                System.out.println("User Wins!");
-	            }
+	      while(playAgain) {
+	    	  while (numberOfRound >=1  && numberOfRound <= 10) {
+	    	  for(int i=0; i < numberOfRound; i++) {
+	    	  System.out.println("Enter your choice(choose 1=rock, 2= paper, 3= scissors)");
+	    	  userChoice = input.nextInt();
+	    	  computerChoice = rnd.nextInt(3)+1;
+	    	  		if((userChoice == 1 && computerChoice == 3) || (userChoice == 2 && computerChoice == 1) || (userChoice == 3 && computerChoice == 2)){
+	    	  			userCounter++;
+	    	  			System.out.println("USER WIN ");
+	    	  			System.out.println("user win for " + userCounter + "times");
+	    	  			
+	    	  		}
+	    	  		if((userChoice ==1 && computerChoice ==1 ) || (userChoice == 2 && computerChoice == 2) || (userChoice == 3 && computerChoice == 3)) {
+	    	  			tieCounter++;
+	    	  			System.out.println("This Game TIE");
+	    	  			System.out.println("Tie for " + tieCounter  + " times");
+	    	  			
+	    	  		}
+	    	  		else if((userChoice == 3 && computerChoice == 1)||(userChoice == 1 && computerChoice == 2 ) || (userChoice == 2 && computerChoice == 3)) {
+	    	  			compCounter++;
+	    	  			System.out.println("COMPUTER WIN ");
+	    	  			System.out.println("computer win for "+ compCounter + "times");
+	    	  			
+	    	  		}
+	    	}
+	    	  System.out.println("do you want to play again? yes or no");
+	    	  String moreRound = input.next();
+	    	  if(moreRound.equalsIgnoreCase("yes")) {
+	    		  playAgain = true;
+	    	  }
+	    	  
+	    	  else if(moreRound.equalsIgnoreCase("no")){
+	    		  System.out.println("Thanks for playing!");
+	    	  }
+	    	  }
 	      }
-	      else if (userChoice==rock)
-	      {
-	        System.out.println("User Wins");
 	      }
-	      else
-	      {
-	          System.out.println("Computer Wins");
-	      } //END RESULTS
-	    }//END main
-	    
-	}//END class
-     
+	}
+
+	
+	
+	      
+	      
+	      
+	      
+	     
 	
 
 		
